@@ -10,10 +10,10 @@
  * @since 1.0.0
  */
 
-$file_includes = array(
-	 'includes/constants.php', 				// Constansts in the projest
+$file_includes = [
+	'includes/constants.php', 			// Constansts in the projest	
+	'includes/scripts.php',             // Enqueue theme styles and scripts
 	// 'includes/setup.php',               // Basic theme setup
-	 'includes/scripts.php',             // Enqueue theme styles and scripts
 	// 'includes/project.php',             // Custom functions for this specific project
 	// 'includes/acf.php',                 // Advanced custom fields functions
 	// 'includes/blocks.php',              // Custom Gutenberg blocks
@@ -23,15 +23,17 @@ $file_includes = array(
 	// 'includes/editor.php',              // Editor styles
 	// 'includes/nav-walker.php',          // Header nav Walker
 	// 'includes/api.php',                 // Api
-);
+];
 
 /**
  * Checks if any file have error while including it.
  */
-foreach ( $file_includes as $file ) {
-	if ( ! $filepath = locate_template( $file ) ) {
-		trigger_error( sprintf( __( 'Error locating %s for inclusion', 'demo_child' ), $file ), E_USER_ERROR );
+if(isset($file_includes) && !empty($file_includes) && is_array($file_includes)) {
+	foreach ( $file_includes as $file ) {
+		if ( ! $filepath = locate_template( $file ) ) {
+			trigger_error( sprintf( __( 'Error locating %s for inclusion', 'demo_child' ), $file ), E_USER_ERROR );
+		}
+		require_once $filepath;
 	}
-	require_once $filepath;
 }
 unset( $file, $filepath );

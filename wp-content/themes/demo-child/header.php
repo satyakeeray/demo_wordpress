@@ -1,33 +1,47 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php
+/**
+ * The template for displaying website header
+ *
+ * @link https://developer.wordpress.org/themes/basics/template-files/#template-partials
+ *
+ * @package Demo Child
+ * @since   1.0.0
+ */
 
+// Global variables
+global $option_fields;
+global $pID;
+global $fields;
+global $current_pId;
+$current_pId = get_the_ID();
+$pID         = get_the_ID();
+
+// Page Tags - Advanced custom fields variables
+/*$tracking               = ( isset($option_fields['tracking_code']) ) ? $option_fields['tracking_code'] : null;
+$ccss                   = ( isset($option_fields['custom_css'] )) ? $option_fields['custom_css'] : null;
+$hscripts               = ( isset($option_fields['head_scripts']) ) ? $option_fields['head_scripts'] : null;
+$bscripts               = ( isset($option_fields['body_scripts']) ) ? $option_fields['body_scripts'] : null;
+$jackvar_tohdr_tbar_tgl = $option_fields['jackvar_tohdr_tbar_tgl'];
+$jackvar_tohdr_tbar     = $option_fields['jackvar_tohdr_tbar'];
+$jackvar_tohdr_tbar_btn = $option_fields['jackvar_tohdr_tbar_btn'];
+// Page variables - Advanced custom fields variables
+
+$has_topbar = ' ';
+if ( $jackvar_tohdr_tbar_tgl ) {
+	$has_topbar = ' has-topbar ';
+}*/
+
+?>
+<!DOCTYPE html>
+<html <?php language_attributes(); ?>>
 <head>
-    <meta charset="utf-8">
-    <title>FASTER - Logistics Company Website Template</title>
+    <meta charset="<?php bloginfo( 'charset' ); ?>">    
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="Free HTML Templates" name="keywords">
     <meta content="Free HTML Templates" name="description">
-
-    <?php /* ?>
-    <!-- Favicon -->
-    <link href="img/favicon.ico" rel="icon">
-
-    <!-- Google Web Fonts -->
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-
-    <!-- Font Awesome -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-
-    <!-- Libraries Stylesheet -->
-    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-
-    <!-- Customized Bootstrap Stylesheet -->
-    <link href="css/style.css" rel="stylesheet">
-    <?php */ ?>
+    <link href="<?php echo ASSETS_FOLDER_PATH . DS . IMAGE_FOLDER_NAME . DS; ?>favicon.ico" rel="icon">    
     <?php wp_head(); ?>
 </head>
-
 <body>
     <!-- Topbar Start -->
     <div class="container-fluid bg-dark">
@@ -91,5 +105,4 @@
             </div>
         </nav>
     </div>
-    <?php echo get_assets_file_version('style.js'); ?>
     <!-- Navbar End -->

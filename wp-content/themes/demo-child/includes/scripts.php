@@ -8,108 +8,56 @@
  * @since 1.0.0
  */
 
-
 /**
- * Theme assets
+ * Setup the style and scripts files
  *
- * Define variable to store asset directory folder in it.
- *
- * That can be used afterward to call stylesheet / scripts etc
+ * This can be used afterward to call stylesheet / scripts etc
  */
 
-
-// Define bundle version
-//DEFINE( 'ASSET_VERSION_JS', filemtime( ASSETS_DIR . '/js/bundle.js' ) );
-//DEFINE( 'ASSET_VERSION_CSS', filemtime( ASSETS_DIR . '/css/bundle.css' ) );
-
-// 
 
 /**
  * demo_assets function
  * Theme assets
  *
- * Enqueue and Dequeue required files
+ * Enqueue required files
  */
 function demo_assets() {
+	// Stylesheet Files Array
+	// Each key of the array should be unique
+	$stylesheet_files = [
+		'google-font-1' => 'https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap',
+		'google-font-2' => 'https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap',
+		'font-awesome' 	=> 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css',
+		'demo-style' 	=> 'style.css',
+	];	
+	add_stylesheet_and_scripts($stylesheet_files, 'css');
 
-	// Enqueue theme styles
-	wp_enqueue_style( 'demo-theme-stylesheet', ASSETS_DIR . DS . CSS_DIRECTORY_NAME . DS . 'style.css?v=' . get_assets_file_version('style.css'), false, null );
-
-	// Eliminate the emoji script
-	remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
-	remove_action( 'wp_print_styles', 'print_emoji_styles' );
-
-	// Enqueue comments reply script on single post pages
-	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
-		wp_enqueue_script( 'comment-reply' );
-	}
-
-	if ( ! is_admin() && ! is_user_logged_in() ) {
-		// Deregister dashicons on frontend
-		wp_deregister_style( 'dashicons' );
-	}
-	wp_enqueue_script( 'jquery' );
-
-	// Register project scripts
-	//wp_register_script( 'demo-theme-scripts', ASSETS_DIR . '/js/bundle.min.js?v=' . ASSET_VERSION_JS, array( 'jquery' ), null, false );
-
-	// if ( is_page_template( 'templates/template-home.php' ) ) {
-	// wp_enqueue_script( 'owl-carousel-js', get_template_directory_uri() . '/assets/js/vendor/owl.carousel.js', array( 'jquery' ), null, false );
-	// wp_enqueue_script( 'owl-carousel-js', get_template_directory_uri() . '/assets/js/vendor/owl.carousel.js', array( 'jquery' ), null, false );
-	// wp_enqueue_script( 'home-hero-scripts', get_template_directory_uri() . '/templates/js/home.js', array( 'jquery' ), null, false );
-	// }
-	/*if ( is_page_template( 'templates/template-team.php' ) ) {
-		wp_enqueue_script( 'magnific-popup-js', get_template_directory_uri() . '/assets/js/vendor/jquery-magnificpopup.js', array( 'jquery' ), null, false );
-	}*/
-
-	// Localize
-	/*wp_localize_script(
-		'glide-theme-scripts',
-		'localVars',
-		array(
-			'ajax_url' => admin_url( 'admin-ajax.php' ),
-		)
-	);*/
-
-	// Enqueue project scripts
-	//wp_enqueue_script( 'glide-theme-scripts' );
+	// Javascript Files Array
+	// Each key of the array should be unique
+	$script_files = [
+		'jquery-min' 	=> 'https://code.jquery.com/jquery-3.4.1.min.js',
+		'bootstrap-min' => 'https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js',
+		'main' 			=> 'main.js',
+	];
+	add_stylesheet_and_scripts($script_files, 'js');	
 }
 
 add_action( 'wp_enqueue_scripts', 'demo_assets' );
 
-/*function wpdocs_enqueue_custom_admin_style() {
-	wp_enqueue_style( 'sample-editor-styles', get_template_directory_uri() . '/assets/css/editor-style.min.css', false, '1.0.0' );
-}
-add_action( 'admin_enqueue_scripts', 'wpdocs_enqueue_custom_admin_style' );
 
 
-// registering dashicons
-function glide_custom_dashicons() {
-	 wp_enqueue_style( 'sample-dashicons-styles', esc_url( get_template_directory_uri() ) . '/assets/css/dashicons.css', false, '1.0.0' );
-}
-add_action( 'admin_enqueue_scripts', 'glide_custom_dashicons' );
-*/
-
-
-/**
- * get_assets_file_version function
- * Theme assets
- *
- * Get files version of assets directory
- */
-
-function get_assets_file_version($file_name) {
-    $file_sub_path = '';
-    if($file_name) {
-        $file_name_array = explode('.', $file_name);
-        $file_extension  = (is_array($file_name_array) && !empty($file_name_array)) ? strtolower(end($file_name_array)) : '';
-        if($file_extension == 'js') {
-            $file_sub_path = JS_DIRECTORY_NAME . DS . $file_name;
-        }
-        if($file_extension == 'css') {
-            $file_sub_path = CSS_DIRECTORY_NAME . DS . $file_name;
-        }
-    }    
-    return $file_path = ASSETS_DIR . DS . $file_sub_path;
-    return $file_version = @filemtime($file_path);
+function add_stylesheet_and_scripts($files_array, $file_type='js') {
+	if(isset($files_array) && is_array($files_array) && !empty($files_array)) {
+		foreach($files_array as $handle => $file) {
+			$file_check  = explode(DS, $file);
+			$folder_Name = ($file_type == 'css') ? CSS_FOLDER_NAME : JS_FOLDER_NAME;
+			$file_path   = (count($file_check) > 1) ? $file : ASSETS_FOLDER_PATH . DS . $folder_Name . DS . $file;
+			$file_type   = strtolower($file_type);
+			if(strtolower($file_type) == 'css') {
+				wp_enqueue_style($handle, $file_path);
+			} else {
+				wp_enqueue_script($handle, $file_path);
+			}
+		}
+	}
 }
