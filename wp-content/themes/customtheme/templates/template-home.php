@@ -7,7 +7,7 @@
  *
  * @link https://developer.wordpress.org/themes/template-files-section/page-template-files/
  *
- * @package Demo child
+ * @package Custom Theme
  * @since 1.0.0
  */
 
@@ -16,19 +16,19 @@ get_header();
 ?>
 <!-- Header Start -->
 <div class="jumbotron jumbotron-fluid mb-5">
-        <div class="container text-center py-5">
-            <h1 class="text-primary mb-4">Safe & Faster</h1>
-            <h1 class="text-white display-3 mb-5">Logistics Services</h1>
-            <div class="mx-auto" style="width: 100%; max-width: 600px;">
-                <div class="input-group">
-                    <input type="text" class="form-control border-light" style="padding: 30px;" placeholder="Tracking Id">
-                    <div class="input-group-append">
-                        <button class="btn btn-primary px-3">Track & Trace</button>
-                    </div>
+    <div class="container text-center py-5">
+        <h1 class="text-primary mb-4">Safe & Faster</h1>
+        <h1 class="text-white display-3 mb-5">Logistics Services</h1>
+        <div class="mx-auto" style="width: 100%; max-width: 600px;">
+            <div class="input-group">
+                <input type="text" class="form-control border-light" style="padding: 30px;" placeholder="Tracking Id">
+                <div class="input-group-append">
+                    <button class="btn btn-primary px-3">Track & Trace</button>
                 </div>
             </div>
         </div>
     </div>
+</div>
     <!-- Header End -->
 
 
@@ -37,7 +37,7 @@ get_header();
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-5 pb-4 pb-lg-0">
-                    <img class="img-fluid w-100" src="img/about.jpg" alt="">
+                    <img class="img-fluid w-100" src="<?php echo IMAGES_PATH; ?>about.jpg" alt="">
                     <div class="bg-primary text-dark text-center p-4">
                         <h3 class="m-0">25+ Years Experience</h3>
                     </div>
@@ -179,7 +179,7 @@ get_header();
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-5">
-                    <img class="img-fluid w-100" src="img/feature.jpg" alt="">
+                    <img class="img-fluid w-100" src="<?php echo IMAGES_PATH; ?>feature.jpg" alt="">
                 </div>
                 <div class="col-lg-7 py-5 py-lg-0">
                     <h6 class="text-primary text-uppercase font-weight-bold">Why Choose Us</h6>
@@ -279,7 +279,7 @@ get_header();
             <div class="row">
                 <div class="col-lg-3 col-md-6">
                     <div class="team card position-relative overflow-hidden border-0 mb-5">
-                        <img class="card-img-top" src="img/team-1.jpg" alt="">
+                        <img class="card-img-top" src="<?php echo IMAGES_PATH; ?>team-1.jpg" alt="">
                         <div class="card-body text-center p-0">
                             <div class="team-text d-flex flex-column justify-content-center bg-secondary">
                                 <h5 class="font-weight-bold">Full Name</h5>
@@ -296,7 +296,7 @@ get_header();
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <div class="team card position-relative overflow-hidden border-0 mb-5">
-                        <img class="card-img-top" src="img/team-2.jpg" alt="">
+                        <img class="card-img-top" src="<?php echo IMAGES_PATH; ?>team-2.jpg" alt="">
                         <div class="card-body text-center p-0">
                             <div class="team-text d-flex flex-column justify-content-center bg-secondary">
                                 <h5 class="font-weight-bold">Full Name</h5>
@@ -313,7 +313,7 @@ get_header();
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <div class="team card position-relative overflow-hidden border-0 mb-5">
-                        <img class="card-img-top" src="img/team-3.jpg" alt="">
+                        <img class="card-img-top" src="<?php echo IMAGES_PATH; ?>team-3.jpg" alt="">
                         <div class="card-body text-center p-0">
                             <div class="team-text d-flex flex-column justify-content-center bg-secondary">
                                 <h5 class="font-weight-bold">Full Name</h5>
@@ -330,7 +330,7 @@ get_header();
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <div class="team card position-relative overflow-hidden border-0 mb-5">
-                        <img class="card-img-top" src="img/team-4.jpg" alt="">
+                        <img class="card-img-top" src="<?php echo IMAGES_PATH; ?>team-4.jpg" alt="">
                         <div class="card-body text-center p-0">
                             <div class="team-text d-flex flex-column justify-content-center bg-secondary">
                                 <h5 class="font-weight-bold">Full Name</h5>
@@ -362,7 +362,7 @@ get_header();
                 <div class="position-relative bg-secondary p-4">
                     <i class="fa fa-3x fa-quote-right text-primary position-absolute" style="top: -6px; right: 0;"></i>
                     <div class="d-flex align-items-center mb-3">
-                        <img class="img-fluid rounded-circle" src="img/testimonial-1.jpg" style="width: 60px; height: 60px;" alt="">
+                        <img class="img-fluid rounded-circle" src="<?php echo IMAGES_PATH; ?>testimonial-1.jpg" style="width: 60px; height: 60px;" alt="">
                         <div class="ml-3">
                             <h6 class="font-weight-semi-bold m-0">Client Name</h6>
                             <small>- Profession</small>
@@ -373,7 +373,7 @@ get_header();
                 <div class="position-relative bg-secondary p-4">
                     <i class="fa fa-3x fa-quote-right text-primary position-absolute" style="top: -6px; right: 0;"></i>
                     <div class="d-flex align-items-center mb-3">
-                        <img class="img-fluid rounded-circle" src="img/testimonial-2.jpg" style="width: 60px; height: 60px;" alt="">
+                        <img class="img-fluid rounded-circle" src="<?php echo IMAGES_PATH; ?>testimonial-2.jpg" style="width: 60px; height: 60px;" alt="">
                         <div class="ml-3">
                             <h6 class="font-weight-semi-bold m-0">Client Name</h6>
                             <small>- Profession</small>
@@ -384,7 +384,7 @@ get_header();
                 <div class="position-relative bg-secondary p-4">
                     <i class="fa fa-3x fa-quote-right text-primary position-absolute" style="top: -6px; right: 0;"></i>
                     <div class="d-flex align-items-center mb-3">
-                        <img class="img-fluid rounded-circle" src="img/testimonial-3.jpg" style="width: 60px; height: 60px;" alt="">
+                        <img class="img-fluid rounded-circle" src="<?php echo IMAGES_PATH; ?>testimonial-3.jpg" style="width: 60px; height: 60px;" alt="">
                         <div class="ml-3">
                             <h6 class="font-weight-semi-bold m-0">Client Name</h6>
                             <small>- Profession</small>
@@ -395,7 +395,7 @@ get_header();
                 <div class="position-relative bg-secondary p-4">
                     <i class="fa fa-3x fa-quote-right text-primary position-absolute" style="top: -6px; right: 0;"></i>
                     <div class="d-flex align-items-center mb-3">
-                        <img class="img-fluid rounded-circle" src="img/testimonial-4.jpg" style="width: 60px; height: 60px;" alt="">
+                        <img class="img-fluid rounded-circle" src="<?php echo IMAGES_PATH; ?>testimonial-4.jpg" style="width: 60px; height: 60px;" alt="">
                         <div class="ml-3">
                             <h6 class="font-weight-semi-bold m-0">Client Name</h6>
                             <small>- Profession</small>
@@ -419,7 +419,7 @@ get_header();
             <div class="row">
                 <div class="col-md-6 mb-5">
                     <div class="position-relative">
-                        <img class="img-fluid w-100" src="img/blog-1.jpg" alt="">
+                        <img class="img-fluid w-100" src="<?php echo IMAGES_PATH; ?>blog-1.jpg" alt="">
                         <div class="position-absolute bg-primary d-flex flex-column align-items-center justify-content-center rounded-circle"
                             style="width: 60px; height: 60px; bottom: -30px; right: 30px;">
                             <h4 class="font-weight-bold mb-n1">01</h4>
@@ -429,7 +429,7 @@ get_header();
                     <div class="bg-secondary" style="padding: 30px;">
                         <div class="d-flex mb-3">
                             <div class="d-flex align-items-center">
-                                <img class="rounded-circle" style="width: 40px; height: 40px;" src="img/user.jpg" alt="">
+                                <img class="rounded-circle" style="width: 40px; height: 40px;" src="<?php echo IMAGES_PATH; ?>user.jpg" alt="">
                                 <a class="text-muted ml-2" href="">John Doe</a>
                             </div>
                             <div class="d-flex align-items-center ml-4">
@@ -444,7 +444,7 @@ get_header();
                 </div>
                 <div class="col-md-6 mb-5">
                     <div class="position-relative">
-                        <img class="img-fluid w-100" src="img/blog-2.jpg" alt="">
+                        <img class="img-fluid w-100" src="<?php echo IMAGES_PATH; ?>blog-2.jpg" alt="">
                         <div class="position-absolute bg-primary d-flex flex-column align-items-center justify-content-center rounded-circle"
                             style="width: 60px; height: 60px; bottom: -30px; right: 30px;">
                             <h4 class="font-weight-bold mb-n1">01</h4>
@@ -454,7 +454,7 @@ get_header();
                     <div class="bg-secondary" style="padding: 30px;">
                         <div class="d-flex mb-3">
                             <div class="d-flex align-items-center">
-                                <img class="rounded-circle" style="width: 40px; height: 40px;" src="img/user.jpg" alt="">
+                                <img class="rounded-circle" style="width: 40px; height: 40px;" src="<?php echo IMAGES_PATH; ?>user.jpg" alt="">
                                 <a class="text-muted ml-2" href="">John Doe</a>
                             </div>
                             <div class="d-flex align-items-center ml-4">
