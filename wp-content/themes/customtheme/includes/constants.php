@@ -53,5 +53,8 @@ define('JS_PATH', ASSETS_FOLDER_PATH . DS . JS_FOLDER_NAME. DS);
 // Define the images path
 define('IMAGES_PATH', ASSETS_FOLDER_PATH . DS . IMAGE_FOLDER_NAME. DS);
 
+// Define the logo file name
+define('LOGO_IMAGE', IMAGES_PATH.'logo.png');
+
 // Time format for the_time()
 define( 'PROJECT_DATE_FORMAT', 'F j, Y' );

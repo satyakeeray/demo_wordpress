@@ -15,10 +15,19 @@ global $fields;
 $pID = get_the_ID();
 
 //Advanced custom fields variables
-$tracking   = $option_fields['tracking_code'] ?? null;
-$ccss       = $option_fields['custom_css'] ?? null;
-$hscripts   = $option_fields['head_scripts'] ?? null;
-$bscripts   = $option_fields['body_scripts'] ?? null;
+$option_fields  = get_fields( 'option' );
+$tracking_code  = $option_fields['tracking_code'] ?? null;
+$custom_css     = $option_fields['custom_css'] ?? null;
+$head_scripts   = $option_fields['head_scripts'] ?? null;
+$body_scripts   = $option_fields['body_scripts'] ?? null;
+
+//pre($fields);
+/*social_media_links
+social_links
+social_link_class_name*/
+
+$social_media_links = $option_fields['social_media_links'];
+//pre($social_media_links);
 
 ?>
 <!DOCTYPE html>
@@ -31,10 +40,10 @@ $bscripts   = $option_fields['body_scripts'] ?? null;
     <link href="<?php echo IMAGES_PATH; ?>favicon.ico" rel="icon">
     <?php
     //Tracking code get from the theme options
-    echo !empty($tracking) ? html_entity_decode($tracking, ENT_QUOTES) : '';
+    echo !empty($tracking_code) ? html_entity_decode($tracking_code, ENT_QUOTES) : '';
 
 	// Custom CSS
-	echo !empty($ccss) ? '<style type="text/css">' . html_entity_decode($ccss, ENT_QUOTES) . '</style>' : '';
+	echo !empty($custom_css) ? '<style type="text/css">' . html_entity_decode($custom_css, ENT_QUOTES) . '</style>' : '';
 
     wp_head(); ?>
 </head>
@@ -49,7 +58,22 @@ $bscripts   = $option_fields['body_scripts'] ?? null;
                     <small><i class="fa fa-envelope mr-2"></i>info@example.com</small>
                 </div>
             </div>
-            <div class="col-lg-6 text-center text-lg-right">
+            <?php if($social_media_links): ?>
+                <div class="col-lg-6 text-center text-lg-right">
+                    <div class="d-inline-flex align-items-center">
+                        <?php foreach($social_media_links as $social_link): 
+                            $social_links       = $social_link['social_links']['url'];
+                            $social_class_name  = $social_link['social_link_class_name'];
+                            $link_target        =  $social_link['social_links']['target'];
+                            ?>
+                            <a class="text-white px-2" href="<?php echo $social_links; ?>" target="<?php echo $link_target; ?>">
+                                <i class="fab fa-<?php echo $social_class_name; ?>-f"></i>
+                            </a>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+            <?php endif; ?>
+            <!-- <div class="col-lg-6 text-center text-lg-right">
                 <div class="d-inline-flex align-items-center">
                     <a class="text-white px-2" href="">
                         <i class="fab fa-facebook-f"></i>
@@ -67,7 +91,7 @@ $bscripts   = $option_fields['body_scripts'] ?? null;
                         <i class="fab fa-youtube"></i>
                     </a>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
     <!-- Topbar End -->

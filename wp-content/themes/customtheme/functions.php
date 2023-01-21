@@ -11,13 +11,14 @@
  */
 
 $file_includes = [
-	'includes/constants.php', 			// Constansts in the projest	
+	'includes/constants.php', 			// Constansts in the projest
+	'includes/custom.php',              // Custom functions
 	'includes/scripts.php',             // Enqueue theme styles and scripts	
 	// 'includes/project.php',             // Custom functions for this specific project
 	'includes/acf.php',                 // Advanced custom fields functions
 	'includes/blocks.php',              // Custom Gutenberg blocks
 	// 'includes/cpt.php',                 // Custom post types setup
-	// 'includes/custom.php',              // Custom functions
+	
 	// 'includes/ajax.php',                // Ajax related functions
 	// 'includes/editor.php',              // Editor styles
 	// 'includes/nav-walker.php',          // Header nav Walker
