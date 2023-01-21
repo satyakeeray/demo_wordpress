@@ -15,19 +15,15 @@ global $fields;
 $pID = get_the_ID();
 
 //Advanced custom fields variables
-$option_fields  = get_fields( 'option' );
-$tracking_code  = $option_fields['tracking_code'] ?? null;
-$custom_css     = $option_fields['custom_css'] ?? null;
-$head_scripts   = $option_fields['head_scripts'] ?? null;
-$body_scripts   = $option_fields['body_scripts'] ?? null;
+$option_fields      = get_fields( 'option' );
+$tracking_code      = $option_fields['tracking_code'] ?? null;
+$custom_css         = $option_fields['custom_css'] ?? null;
+$head_scripts       = $option_fields['head_scripts'] ?? null;
+$body_scripts       = $option_fields['body_scripts'] ?? null;
 
-//pre($fields);
-/*social_media_links
-social_links
-social_link_class_name*/
+// Social Media Links
+$social_media_links = $option_fields['social_media_links'] ?? false;
 
-$social_media_links = $option_fields['social_media_links'];
-//pre($social_media_links);
 
 ?>
 <!DOCTYPE html>
@@ -42,8 +38,8 @@ $social_media_links = $option_fields['social_media_links'];
     //Tracking code get from the theme options
     echo !empty($tracking_code) ? html_entity_decode($tracking_code, ENT_QUOTES) : '';
 
-	// Custom CSS
-	echo !empty($custom_css) ? '<style type="text/css">' . html_entity_decode($custom_css, ENT_QUOTES) . '</style>' : '';
+    // Custom CSS
+    echo !empty($custom_css) ? '<style type="text/css">' . html_entity_decode($custom_css, ENT_QUOTES) . '</style>' : '';
 
     wp_head(); ?>
 </head>
@@ -67,31 +63,12 @@ $social_media_links = $option_fields['social_media_links'];
                             $link_target        =  $social_link['social_links']['target'];
                             ?>
                             <a class="text-white px-2" href="<?php echo $social_links; ?>" target="<?php echo $link_target; ?>">
-                                <i class="fab fa-<?php echo $social_class_name; ?>-f"></i>
+                                <i class="fab <?php echo $social_class_name; ?>"></i>
                             </a>
                         <?php endforeach; ?>
                     </div>
                 </div>
             <?php endif; ?>
-            <!-- <div class="col-lg-6 text-center text-lg-right">
-                <div class="d-inline-flex align-items-center">
-                    <a class="text-white px-2" href="">
-                        <i class="fab fa-facebook-f"></i>
-                    </a>
-                    <a class="text-white px-2" href="">
-                        <i class="fab fa-twitter"></i>
-                    </a>
-                    <a class="text-white px-2" href="">
-                        <i class="fab fa-linkedin-in"></i>
-                    </a>
-                    <a class="text-white px-2" href="">
-                        <i class="fab fa-instagram"></i>
-                    </a>
-                    <a class="text-white pl-2" href="">
-                        <i class="fab fa-youtube"></i>
-                    </a>
-                </div>
-            </div> -->
         </div>
     </div>
     <!-- Topbar End -->
