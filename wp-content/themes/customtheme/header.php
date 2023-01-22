@@ -48,6 +48,7 @@ $contact_details_array   = array_filter($contact_details_array);
 //Social Media Links
 $show_social_links_from_social_media_media_tab = $option_fields['show_social_links_from_social_media_media_tab'] ?? false;
 $social_media_links = ($show_social_links_from_social_media_media_tab === true) ? $option_fields['social_media_links'] : $option_fields['social_media_links_header'];
+
 ?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
