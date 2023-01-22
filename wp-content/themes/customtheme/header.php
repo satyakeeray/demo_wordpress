@@ -22,8 +22,7 @@ $head_scripts       = $option_fields['head_scripts'] ?? null;
 $body_scripts       = $option_fields['body_scripts'] ?? null;
 
 
-// Social Media Links
-$social_media_links = $option_fields['social_media_links'] ?? false;
+
 
 //Contact Details - Phone Number
 $show_contact_number_from_contact_details   = $option_fields['show_contact_number_from_contact_details'] ?? false;
@@ -40,6 +39,15 @@ $show_address_from_contact_details          = $option_fields['show_address_from_
 $header_section_address                     = $option_fields['header_section_address'] ?? '';
 $address                                    = ($show_address_from_contact_details === true) ? $option_fields['address'] : $header_section_address;
 
+
+$contact_details_array[] = $phone_number ? '<small><i class="fa fa-phone-alt mr-2"></i>'.$phone_number.'</small>' : '';
+$contact_details_array[] = $email_id ? '<small><i class="fa fa-envelope mr-2"></i>'.$email_id.'</small>' : '';
+$contact_details_array[] = $address ? '<small><i class="fa fa-map-marker-alt mr-2"></i>'.$address.'</small>' : '';
+$contact_details_array   = array_filter($contact_details_array);
+
+//Social Media Links
+$show_social_links_from_social_media_media_tab = $option_fields['show_social_links_from_social_media_media_tab'] ?? false;
+$social_media_links = ($show_social_links_from_social_media_media_tab === true) ? $option_fields['social_media_links'] : $option_fields['social_media_links_header'];
 ?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
@@ -63,15 +71,11 @@ $address                                    = ($show_address_from_contact_detail
     <div class="container-fluid bg-dark">
         <div class="row py-2 px-lg-5">
             <div class="col-lg-6 text-center text-lg-left mb-2 mb-lg-0">
-                <div class="d-inline-flex align-items-center text-white">
-                    <?php if($phone_number): ?>
-                        <small><i class="fa fa-phone-alt mr-2"></i><?php echo $phone_number; ?></small>
-                    <?php endif; ?>
-                    <small class="px-3">|</small>
-                    <?php if($email_id): ?>
-                        <small><i class="fa fa-envelope mr-2"></i><?php echo $email_id; ?></small>
-                    <?php endif; ?>
-                </div>
+                <?php if($contact_details_array): ?>
+                    <div class="d-inline-flex align-items-center text-white">
+                        <?php echo implode('<small class="px-3">|</small>', $contact_details_array);?>
+                    </div>
+                <?php endif; ?>
             </div>
             <?php if($social_media_links): ?>
                 <div class="col-lg-6 text-center text-lg-right">
