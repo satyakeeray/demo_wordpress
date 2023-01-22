@@ -8,15 +8,15 @@
  * @since   1.0.0
  */
 // Global variables
-global $option_fields;
 global $pID;
 global $fields;
-
+global $option_fields;
 $pID = get_the_ID();
-?>
 
+// Social Media Links
+$social_media_links = $option_fields['social_media_links'] ?? false; ?>
 <!-- Footer Start -->
-<div class="container-fluid bg-dark text-white mt-5 py-5 px-sm-3 px-md-5">
+    <div class="container-fluid bg-dark text-white mt-5 py-5 px-sm-3 px-md-5">
         <div class="row pt-5">
             <div class="col-lg-7 col-md-6">
                 <div class="row">
@@ -25,12 +25,18 @@ $pID = get_the_ID();
                         <p><i class="fa fa-map-marker-alt mr-2"></i>123 Street, New York, USA</p>
                         <p><i class="fa fa-phone-alt mr-2"></i>+012 345 67890</p>
                         <p><i class="fa fa-envelope mr-2"></i>info@example.com</p>
-                        <div class="d-flex justify-content-start mt-4">
-                            <a class="btn btn-outline-light btn-social mr-2" href="#"><i class="fab fa-twitter"></i></a>
-                            <a class="btn btn-outline-light btn-social mr-2" href="#"><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-outline-light btn-social mr-2" href="#"><i class="fab fa-linkedin-in"></i></a>
-                            <a class="btn btn-outline-light btn-social" href="#"><i class="fab fa-instagram"></i></a>
-                        </div>
+                        <?php if($social_media_links): ?>
+                            <div class="d-flex justify-content-start mt-4">
+                                <?php foreach($social_media_links as $social_link): 
+                                    $social_links       = $social_link['social_links']['url'];
+                                    $social_class_name  = $social_link['social_link_class_name'];
+                                    $link_target        =  $social_link['social_links']['target'];
+                                    $link_target        = $link_target ? 'target='.$link_target : '';
+                                ?>
+                                <a class="btn btn-outline-light btn-social mr-2" href="<?php echo $social_links; ?>" <?php echo $link_target; ?>><i class="fab <?php echo $social_class_name; ?>"></i></a>
+                                <?php endforeach; ?>
+                            </div>
+                        <?php endif; ?>
                     </div>
                     <div class="col-md-6 mb-5">
                         <h3 class="text-primary mb-4">Quick Links</h3>

@@ -9,9 +9,9 @@
  */
 
 // Global variables
-global $option_fields;
 global $pID;
 global $fields;
+global $option_fields;
 $pID = get_the_ID();
 
 //Advanced custom fields variables
@@ -21,9 +21,24 @@ $custom_css         = $option_fields['custom_css'] ?? null;
 $head_scripts       = $option_fields['head_scripts'] ?? null;
 $body_scripts       = $option_fields['body_scripts'] ?? null;
 
+
 // Social Media Links
 $social_media_links = $option_fields['social_media_links'] ?? false;
 
+//Contact Details - Phone Number
+$show_contact_number_from_contact_details   = $option_fields['show_contact_number_from_contact_details'] ?? false;
+$header_section_contact_number              = $option_fields['header_section_contact_number'] ?? '';
+$phone_number                               = ($show_contact_number_from_contact_details === true) ? $option_fields['phone_number'] : $header_section_contact_number;
+
+//Contact Details - Email Id
+$show_email_id_from_contact_details         = $option_fields['show_email_id_from_contact_details'] ?? false;
+$header_section_email_id                    = $option_fields['header_section_email_id'] ?? '';
+$email_id                                   = ($show_email_id_from_contact_details === true) ? $option_fields['email_id'] : $header_section_email_id;
+
+//Contact Details Address
+$show_address_from_contact_details          = $option_fields['show_address_from_contact_details'] ?? false;
+$header_section_address                     = $option_fields['header_section_address'] ?? '';
+$address                                    = ($show_address_from_contact_details === true) ? $option_fields['address'] : $header_section_address;
 
 ?>
 <!DOCTYPE html>
@@ -49,9 +64,13 @@ $social_media_links = $option_fields['social_media_links'] ?? false;
         <div class="row py-2 px-lg-5">
             <div class="col-lg-6 text-center text-lg-left mb-2 mb-lg-0">
                 <div class="d-inline-flex align-items-center text-white">
-                    <small><i class="fa fa-phone-alt mr-2"></i>+012 345 6789</small>
+                    <?php if($phone_number): ?>
+                        <small><i class="fa fa-phone-alt mr-2"></i><?php echo $phone_number; ?></small>
+                    <?php endif; ?>
                     <small class="px-3">|</small>
-                    <small><i class="fa fa-envelope mr-2"></i>info@example.com</small>
+                    <?php if($email_id): ?>
+                        <small><i class="fa fa-envelope mr-2"></i><?php echo $email_id; ?></small>
+                    <?php endif; ?>
                 </div>
             </div>
             <?php if($social_media_links): ?>
@@ -61,8 +80,9 @@ $social_media_links = $option_fields['social_media_links'] ?? false;
                             $social_links       = $social_link['social_links']['url'];
                             $social_class_name  = $social_link['social_link_class_name'];
                             $link_target        =  $social_link['social_links']['target'];
+                            $link_target        = $link_target ? 'target='.$link_target : '';
                             ?>
-                            <a class="text-white px-2" href="<?php echo $social_links; ?>" target="<?php echo $link_target; ?>">
+                            <a class="text-white px-2" href="<?php echo $social_links; ?>" <?php echo $link_target; ?>>
                                 <i class="fab <?php echo $social_class_name; ?>"></i>
                             </a>
                         <?php endforeach; ?>
